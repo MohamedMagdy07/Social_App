@@ -1,0 +1,22 @@
+import {User} from '../../user/model/user.model.ts';
+
+export async function checkEmailExists(email) {
+    return await User.findOne({email}, null);
+}
+
+export async function createUser(userData) {
+    const user = new User(userData)
+    return await user.save();
+}
+
+export async function verifyUser(email) {
+    return await User.updateOne({email: email}, {
+        isVerified: true
+    },)
+}
+
+export async function enable2StepVerification(email) {
+    return await User.updateOne({email: email}, {
+        twoStepVerification: true
+    },)
+}
