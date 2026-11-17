@@ -1,12 +1,19 @@
 import Mailjet from 'node-mailjet';
 
+interface IMailJetConfig{
+    apiKey:string;
+    apiSecret:string;
+    fromEmail:string;
+    fromName:string;
+}
+
 export class MailjetProvider {
 
-    client;
-    fromEmail;
-    fromName;
+    private client:Mailjet;
+    private readonly fromEmail ;
+    private readonly fromName;
 
-    constructor(config) {
+    constructor(config:IMailJetConfig) {
         this.client = new Mailjet({
             apiKey: config.apiKey,
             apiSecret: config.apiSecret,
@@ -16,7 +23,7 @@ export class MailjetProvider {
     }
 
 
-    async sendEmail(email, subject, html) {
+    async sendEmail(email:string, subject:string, html:string) {
         try {
             await this.client.post('send', {version: 'v3.1'}).request({
                 Messages: [
