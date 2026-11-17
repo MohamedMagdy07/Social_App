@@ -1,5 +1,5 @@
 import * as otpRepo from "../repository/otp.repository.js";
-import {invalidOtp, noOtp} from "../error.js";
+import {invalidOtp, noOtp} from "../error.ts";
 
 export async function verifyOtp(code, email) {
     const otp = await otpRepo.getOtpByEmail(email);

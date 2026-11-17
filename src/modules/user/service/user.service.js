@@ -1,4 +1,4 @@
-import * as userRepo from "../repository/user.repository.js";
+import * as userRepo from "../repository/user.repository.ts";
 import {AppError} from "../../../pkg/error/error.ts";
 
 export async function getAllUsers() {

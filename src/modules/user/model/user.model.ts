@@ -1,28 +1,7 @@
 import {Expression, model, Schema} from 'mongoose';
 import {partial} from "zod/mini";
-enum Provider {
-    LOCAL,
-    GOOGLE,
-    FACEBOOK
-}
-enum Gender{
-    MALE,
-    FEMALE
-}
-
-interface IUser {
-    userName:string;
-    email:string;
-    password:string;
-    provider:Provider;
-    gender:Gender;
-    isDeleted?:boolean;
-    isVerified?:boolean;
-    dateOfBirth?:Date;
-    twoStepVerification:boolean
-
-}
-
+import {IUser} from "../interfaces/user.interface";
+import {Gender, Provider} from "../../../common/lib/enum";
 
 const userSchema = new Schema<IUser>({
         userName: {
@@ -77,4 +56,4 @@ const userSchema = new Schema<IUser>({
         strict: true
     })
 
-export const User = model('User', userSchema);
+export const User = model<IUser>('User', userSchema);

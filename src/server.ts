@@ -1,8 +1,8 @@
 import http from "http";
 import {createApp} from "./app";
 import mongoose from "mongoose";
-import {env} from "./lib/config/env";
-import logger from "./pkg/logger/logger";
+import {env} from "./common/lib/config/env";
+import logger from "./common/pkg/logger/logger";
 
 const app = createApp();
 const server = http.createServer(app);

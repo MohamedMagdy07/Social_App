@@ -1,6 +1,6 @@
 import express from 'express';
-import './lib/db/connections'
-import {globalErrorHandler} from "./lib/error/global.error.handler";
+import './common/lib/db/connections'
+import {globalErrorHandler} from "./common/lib/error/global.error.handler";
 
 
 export function createApp(){

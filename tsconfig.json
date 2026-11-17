@@ -5,7 +5,7 @@
     "outDir": "dist",
     "strict": true,
     "skipLibCheck": true,
-    "module": "ESNext",
+    "module": "nodenext",
     "moduleResolution": "bundler",
     "target": "esnext"
 
