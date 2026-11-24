@@ -7,8 +7,7 @@
     "skipLibCheck": true,
     "module": "nodenext",
     "moduleResolution": "bundler",
-    "target": "esnext"
-
+    "target": "esnext",
   },
   "include": ["src"]
 }

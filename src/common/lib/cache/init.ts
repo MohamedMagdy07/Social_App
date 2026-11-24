@@ -1,4 +1,4 @@
-import {RedisCacheProvider} from "../../pkg/cache/redis.ts";
+import RedisCacheProvider from "../../pkg/cache/redis";
 import {env} from "../config/env.js";
 
 export const cacheProvider = new RedisCacheProvider({

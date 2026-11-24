@@ -1,4 +1,6 @@
-import {Gender} from "../../../common/lib/enum";
+import { Gender } from "../../../common/lib/enum";
+
+export * from "./auth.dto";
 
 export interface RegisterDto {
     userName: string;
@@ -6,7 +8,6 @@ export interface RegisterDto {
     password: string;
     phoneNumber?: string;
     gender?: Gender;
-
 }
 
 export interface LoginDto {
@@ -15,7 +16,7 @@ export interface LoginDto {
 }
 
 export interface SendOtpDto {
-    email: string
+    email: string;
 }
 
 export interface VerifyAccountDto {

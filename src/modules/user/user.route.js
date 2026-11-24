@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {withCache} from "../../lib/cache/withCache.js";
-import {getALlUsers} from "./controller/user.controller.js";
+import {withCache} from "../../lib/cache/withCache.ts";
+import {getALlUsers} from "./controller/user.controller";
 
 export const userRouter = Router()
 
