@@ -1,5 +1,5 @@
-import jwt, { SignOptions } from "jsonwebtoken";
-import { env } from "../../../common/lib/config/env";
+import jwt, {SignOptions} from "jsonwebtoken";
+import {env} from "../../../common/lib/config/env";
 
 export async function generateToken(
     data: Record<string, any>,
@@ -10,7 +10,7 @@ export async function generateToken(
             ...data,
         },
         env.jwt.secret,
-        { expiresIn }
+        {expiresIn}
     );
     return token;
 }

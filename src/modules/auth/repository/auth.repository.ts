@@ -1,20 +1,17 @@
 import { User } from "../../user/model/user.model";
-import {IUser} from  "../../user/interfaces/user.interface";
-
-
+import { IUser } from "../../user/interfaces/user.interface";
 
 class AuthRepository {
+    constructor() {}
 
-    constructor() {
-
+    async findUserByEmail(email: string) {
+        return User.findOne({ email, isDeleted: false });
     }
 
     async checkEmailExists(email: string): Promise<boolean> {
         const user = await User.exists({ email });
         return Boolean(user);
     }
-
-
 
     async verifyUser(email: string) {
         return User.updateOne({ email }, { isVerified: true });

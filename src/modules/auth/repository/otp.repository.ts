@@ -1,13 +1,29 @@
-import { OTP, IOtp } from "../model/otp.model";
+import {IOtp, OTP} from "../model/otp.model";
+import { invalidOtp, noOtp } from "../error";
 
-export async function createOtp(otpData: Partial<IOtp>) {
-    return await OTP.create(otpData);
+
+class OtpRepository {
+    constructor() {
+    }
+
+    async createOtp(otpData: Partial<IOtp>) {
+        return await OTP.create(otpData);
+    }
+
+    async getOtpByEmail(email: string) {
+        return await OTP.findOne({email});
+    }
+
+    async deleteOtp(email: string) {
+        return await OTP.deleteMany({email});
+    }
+
+    async verifyOtp(code: string, email: string): Promise<void> {
+        const otp = await this.getOtpByEmail(email);
+        if (!otp) throw noOtp;
+        if (code !== otp.code) throw invalidOtp;
+    }
+
 }
 
-export async function getOtpByEmail(email: string) {
-    return await OTP.findOne({ email });
-}
-
-export async function deleteOtp(email: string) {
-    return await OTP.deleteMany({ email });
-}
+export default new OtpRepository();

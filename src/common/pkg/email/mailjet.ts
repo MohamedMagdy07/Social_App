@@ -1,4 +1,5 @@
 import Mailjet from 'node-mailjet';
+import {IMailProvider} from "./interface";
 
 interface IMailJetConfig{
     apiKey:string;
@@ -7,7 +8,7 @@ interface IMailJetConfig{
     fromName:string;
 }
 
-export class MailjetProvider {
+export class MailjetProvider implements IMailProvider {
 
     private client:Mailjet;
     private readonly fromEmail ;
@@ -23,7 +24,7 @@ export class MailjetProvider {
     }
 
 
-    async sendEmail(email:string, subject:string, html:string) {
+    async send(email:string, subject:string, body:string) {
         try {
             await this.client.post('send', {version: 'v3.1'}).request({
                 Messages: [
@@ -38,11 +39,10 @@ export class MailjetProvider {
                             },
                         ],
                         Subject: subject,
-                        HTMLPart:html
+                        HTMLPart:body
                     },
                 ],
             })
-            return 0;
         } catch (err) {
             console.log(err);
             throw err;

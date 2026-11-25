@@ -1,17 +1,19 @@
 import {Transporter ,createTransport} from 'nodemailer';
 import {env} from "../../lib/config/env";
+import {IMailProvider} from "./interface";
 
 
 interface INodeMailerConfig{
     host:string;
     port:number;
     user:string;
-    password:string;
+    secure?:boolean,
+    pass:string;
     fromEmail:string ;
     fromName:string;
 }
 
-export class NodeMailerProvider {
+export class NodeMailerProvider implements IMailProvider{
 
     private client:Transporter ;
     private readonly fromEmail:string ;
@@ -24,20 +26,20 @@ export class NodeMailerProvider {
             secure: false,
             auth: {
                 user: config.user,
-                pass: config.password,
+                pass: config.pass,
             },
         });
         this.fromEmail = config.fromEmail;
         this.fromName = config.fromName;
     }
 
-    async sendEmail(email:string, subject:string, html:string) {
+    async send(email:string, subject:string, body:string) {
         try {
             await this.client.sendMail({
                 from: `${this.fromName} : ${this.fromEmail}`,
                 to:email,
                 subject:subject,
-                html: html, // HTML body
+                html: body, // HTML body
             });
         } catch (err) {
             console.log(err);

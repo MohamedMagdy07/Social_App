@@ -7,6 +7,7 @@ const schema = z.object(
 
         NODE_MAILER_EMAIL: z.string().trim().toLowerCase().includes("@"),
         NODE_MAILER_PASSWORD: z.string(),
+        NODE_MAILER_FROM_NAME:z.string(),
 
         MAILJET_API_KEY: z.string(),
         MAILJET_API_SECRET: z.string(),
@@ -45,6 +46,8 @@ export const env = {
     nodemailer: {
         email: parsed.NODE_MAILER_EMAIL,
         password: parsed.NODE_MAILER_PASSWORD,
+        fromName: parsed.NODE_MAILER_FROM_NAME,
+
     },
     mailjet:{
         key: parsed.MAILJET_API_KEY,
