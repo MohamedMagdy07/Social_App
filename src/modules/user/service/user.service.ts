@@ -1,11 +1,9 @@
 import userRepository from "../repository/user.repository";
-import { AppError } from "../../../common/pkg/error/error";
 import { IUser } from "../interfaces/user.interface";
 
 export class UserService {
     async getAllUsers(): Promise<IUser[]> {
-        const users = await userRepository.getAllUsers();
-        return users;
+        return await userRepository.getAllUsers();
     }
 }
 

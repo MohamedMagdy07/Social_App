@@ -5,7 +5,7 @@ import {NextFunction, Request, Response} from "express";
 export function withCache(ttl = 600) {
     return async (req: Request, res: Response, next: NextFunction) => {
 
-        let key = `${req.method}${req.originalUrl}`;
+        let key = `${req.method}:${req.originalUrl}`;
         const cached = await cacheProvider.get(key);
 
         if (cached) {
@@ -15,7 +15,7 @@ export function withCache(ttl = 600) {
         const ogResponseJson = res.json.bind(res);
         res.json = ((body): Response => {
             if (res.statusCode >= 200 && res.statusCode < 300) {
-                cacheProvider.set(key, JSON.stringify(body), ttl);
+                cacheProvider.set(key, JSON.stringify(body), ttl).catch((error) => console.log("Error while caching", error));
                 res.setHeader("X-Cache", "MISS");
             }
             return ogResponseJson(body);

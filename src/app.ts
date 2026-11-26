@@ -4,6 +4,7 @@ import {globalErrorHandler} from "./common/lib/error/global.error.handler";
 import {correlationId} from "./common/lib/correlation/correlationId";
 import cookieParser from "cookie-parser";
 import {authRouter} from "./modules/auth/auth.route";
+import {userRouter} from "./modules/user/user.route";
 
 
 export function createApp(){
@@ -12,6 +13,7 @@ export function createApp(){
     app.use(correlationId);
     app.use(cookieParser());
     app.use('/auth', authRouter);
+    app.use('/users', userRouter);
 
     app.use(globalErrorHandler);
     return app;

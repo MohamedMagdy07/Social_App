@@ -1,5 +1,4 @@
 import { User } from "../../user/model/user.model";
-import { IUser } from "../../user/interfaces/user.interface";
 
 class AuthRepository {
     constructor() {}
