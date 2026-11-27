@@ -1,5 +1,5 @@
 import postRepository from "../repository/post.repository";
-import {CreatePostDto, UpdatePostDto} from "../dto/post.dto";
+import type {CreatePostDto, UpdatePostDto} from "../dto";
 import {notPostOwner, postNotFound} from "../error";
 
 export class PostService {

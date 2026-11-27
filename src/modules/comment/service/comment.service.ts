@@ -1,5 +1,5 @@
 import commentRepository from "../repository/comment.repository";
-import {CreateCommentDto, UpdateCommentDto} from "../dto/comment.dto";
+import type {CreateCommentDto, UpdateCommentDto} from "../dto";
 import {commentNotFound, notCommentOwner} from "../error";
 import {postNotFound} from "../../post/error";
 import postRepository from "../../post/repository/post.repository";
