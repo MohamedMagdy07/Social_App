@@ -1,7 +1,7 @@
 import {model, Schema} from "mongoose";
+import {IPost} from "../interfaces/post.interface";
 
-
-const commentSchema = new Schema({
+const postSchema = new Schema<IPost>({
         content: {
             type: String,
             required: true,
@@ -9,10 +9,15 @@ const commentSchema = new Schema({
             maxlength: 500,
             trim: true
         },
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
         isDeleted: {
             type: Boolean,
             default: false
-        }
+        },
     },
     {
         timestamps: true,
@@ -20,4 +25,4 @@ const commentSchema = new Schema({
     })
 
 
-export const comment = model("comment", commentSchema);
+export const Post = model<IPost>("Post", postSchema);

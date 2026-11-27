@@ -17,7 +17,7 @@ class AuthRepository {
     }
 
     async enable2StepVerification(email: string) {
-        return User.find({ email }, { twoStepVerification: true });
+        return User.updateOne({ email }, { twoStepVerification: true });
     }
 }
 

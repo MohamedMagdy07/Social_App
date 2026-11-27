@@ -1,11 +1,11 @@
-import { z } from "zod";
+import { z } from \"zod\";
 
 export const registerDTO = z.object({
     email: z.string().email().toLowerCase().trim(),
-    name: z.string().trim().min(2).max(25),
+    userName: z.string().trim().min(2).max(25),
     password: z.string().trim().min(6).max(16),
     dateOfBirth: z.date().optional(),
-    gender: z.enum(["male", "female"]).default("male"),
+    gender: z.enum([\"male\", \"female\"]).default(\"male\"),
 }).strict();
 
 export type RegisterSchema = z.infer<typeof registerDTO>;

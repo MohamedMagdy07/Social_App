@@ -20,6 +20,10 @@ class UserRepository extends DBAbstract<IUser> {
     async findUserById(id: Types.ObjectId) {
         return await User.findOne({_id: id, isDeleted: false}, {password: 0});
     }
+    async updateUser(filter: QueryFilter<IUser>, data: Partial<IUser>) {
+        return await User.findOneAndUpdate(filter, { $set: data }, { new: true });
+    }
+
 }
 
 export default new UserRepository();

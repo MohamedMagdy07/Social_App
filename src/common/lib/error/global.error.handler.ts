@@ -1,4 +1,4 @@
-import logger from "../../pkg/logger/logger.js";
+import logger from "../../pkg/logger/logger";
 import {Request,Response,NextFunction} from "express";
 import {AppError} from "../../pkg/error/error"
 
@@ -11,7 +11,7 @@ export async function globalErrorHandler(error:AppError, req:Request, res:Respon
     })
 
     if (error.isOperationError) {
-        return res.status(error.statusCode).json({
+        return res.status(error.statusCode || 400).json({
             message: error.message,
             success: false,
         });

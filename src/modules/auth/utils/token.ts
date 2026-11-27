@@ -14,3 +14,8 @@ export async function generateToken(
     );
     return token;
 }
+
+export function verifyRefreshToken(token: string) {
+    return jwt.verify(token, env.jwt.secret);
+}
+

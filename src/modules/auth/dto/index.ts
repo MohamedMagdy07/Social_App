@@ -23,3 +23,8 @@ export interface VerifyAccountDto {
     email: string;
     code: string;
 }
+export interface ResetPasswordDto {
+    email: string;
+    code: string;
+    newPassword:string
+}
